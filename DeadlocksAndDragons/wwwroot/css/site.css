@@ -1,0 +1,33 @@
+.menu-container {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.menu-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: #f2f2f2;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    width: 200px;
+}
+
+.menu-button {
+    display: block;
+    padding: 0.7rem 1rem;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+    .menu-button:hover {
+        background-color: #e2e8f0;
+    }
