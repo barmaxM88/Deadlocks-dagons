@@ -1,0 +1,78 @@
+.menu-container {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.menu-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: #f2f2f2;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    width: 200px;
+}
+
+.menu-button {
+    display: block;
+    padding: 0.7rem 1rem;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+    .menu-button:hover {
+        background-color: #e2e8f0;
+    }
+
+.menu-container {
+    background: linear-gradient(180deg, #3b2f2f 0%, #1e1e1e 100%);
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-header {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #f1e6d0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.menu-link {
+    display: block;
+    margin: 10px 0;
+    padding: 10px 20px;
+    background: #5c3d2e;
+    color: #f1e6d0;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s;
+    text-align: center;
+    width: 100%;
+}
+
+    .menu-link:hover {
+        background: #7b4a35;
+        color: #fff;
+    }
+
+.card {
+    background: #28201f;
+    border: 1px solid #5c3d2e;
+    color: #f1e6d0;
+}
+
+    .card h4 {
+        color: #ffde99;
+    }

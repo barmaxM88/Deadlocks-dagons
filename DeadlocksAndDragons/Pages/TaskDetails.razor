@@ -1,0 +1,76 @@
+﻿@page "/task/{id:int}"
+@using DeadlocksAndDragons.Data
+@inject NavigationManager NavManager
+
+@code {
+    [Parameter] public int id { get; set; }
+    private CodingTask? task;
+    private CodingTask? nextTask;
+    private string result = "";
+    private bool isCorrect = false;
+
+    protected override void OnParametersSet()
+    {
+        task = TasksService.GetById(id);
+        nextTask = TasksService.GetById(id + 1);
+        result = "";
+        isCorrect = false;
+    }
+
+    void CheckAnswer(bool answer)
+    {
+        if (task is null) return;
+        isCorrect = (answer == task.IsDeadlock);
+        result = isCorrect
+            ? "✅ Верно! Комната была с ловушкой: сработала нажимная плита, и проигравшая партия телепортировалась в начало."
+            : "❌ Неверно. Обе группы активировали ловушку. Попробуй ещё раз.";
+    }
+
+    void GoToNext()
+    {
+        if (nextTask is not null)
+        {
+            NavManager.NavigateTo($"/task/{nextTask.Id}");
+        }
+        else
+        {
+            NavManager.NavigateTo("/victory");
+        }
+    }
+
+    void GoToHelp()
+    {
+        NavManager.NavigateTo($"/help?from=/task/{id}");
+    }
+}
+
+@if (task is null)
+{
+    <p>Задание не найдено.</p>
+}
+else
+{
+    <h3>@task.Title</h3>
+    <p>@task.Intro</p>
+    <pre class="bg-light p-3 rounded">@task.CodeSnippet</pre>
+    <p><em>@task.Explanation</em></p>
+
+    <p><strong>Вопрос:</strong> Возможна ли ситуация гонки в этой комнате?</p>
+    <button class="btn btn-success me-2" @onclick="@(() => CheckAnswer(true))" disabled="@isCorrect">Да</button>
+    <button class="btn btn-danger" @onclick="@(() => CheckAnswer(false))" disabled="@isCorrect">Нет</button>
+
+    @if (!string.IsNullOrWhiteSpace(result))
+    {
+        <div class="alert @(isCorrect ? "alert-success" : "alert-warning") mt-3">@result</div>
+
+        @if (isCorrect && nextTask is not null)
+        {
+            <button class="btn btn-primary mt-2 me-2" @onclick="GoToNext">⏭ Перейти к следующему заданию</button>
+        }
+    }
+
+    <div class="mt-4">
+        <a class="btn btn-outline-secondary me-2" href="/tasks">🔙 К списку заданий</a>
+        <button class="btn btn-outline-info" @onclick="GoToHelp">📖 Справка</button>
+    </div>
+}

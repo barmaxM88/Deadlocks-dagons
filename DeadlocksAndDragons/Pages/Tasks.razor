@@ -1,0 +1,13 @@
+﻿@page "/tasks"
+@using DeadlocksAndDragons.Data
+
+<h3>Список заданий</h3>
+
+@foreach (var task in TasksService.GetAll())
+{
+    <div class="card m-2 p-3 border">
+        <h4>@task.Title</h4>
+        <p>@task.Intro</p>
+        <a href="/task/@task.Id" class="btn btn-primary">Решить</a>
+    </div>
+}
